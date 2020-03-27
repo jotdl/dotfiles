@@ -12,9 +12,15 @@ if [[ $system_type == "Darwin" ]]; then
 fi
 if [[ $system_type == "Linux" ]]; then 
   echo "Hello Linux User!"
-  sudo apt update
-  # make sure git is installed, not all installations have it by default
-  sudo apt install -y git 
+
+	if hash apt-get 2>/dev/null; then
+    sudo apt update
+    # make sure git is installed, not all installations have it by default
+    sudo apt install -y git curl
+  else
+    sudo pacman -Syu git curl
+  fi
+  
 fi
 
 # install chezmoi

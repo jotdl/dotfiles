@@ -1,5 +1,7 @@
 #!/bin/bash 
 
+# requires curl and sudo
+
 cd "$HOME" || return 
 system_type=$(uname -s)
 if [[ $system_type == "Darwin" ]]; then
@@ -26,8 +28,6 @@ if [[ $system_type == "Darwin" ]]; then
   brew install bash-completion@2
   brew install starship
 
-  curl https://sh.rustup.rs -sSf | sh
-
   defaults write com.apple.dock workspaces-auto-swoosh -bool NO
   defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
   defaults write com.apple.screencapture location /Users/$USER/Pictures/Screenshots
@@ -35,23 +35,24 @@ if [[ $system_type == "Darwin" ]]; then
   defaults write com.apple.dock autohide-delay -float 0
   killall Dock
 
-
-  git config --global core.excludesfile ~/.gitignore
   sudo chsh -s /usr/local/bin/bash $USER
 fi
 
 if [[ $system_type == "Linux" ]]; then 
-	sudo apt-get install -y $(cat ~/.local/share/chezmoi/pkglist.txt | awk '{print $1}')
-  
-    cd ~/bin/setup/
-    ./bashmarks.sh
-	./go.sh  
-	./neovim.sh 
-	./nvm.sh  
-	./rust.sh  
-	./yarn.sh   
+	if hash apt-get 2>/dev/null; then
+    sudo apt-get install -y $(cat ~/.local/share/chezmoi/pkglist.txt | awk '{print $1}')
+  else
+    sudo pacman -Sy $(cat ~/.local/share/chezmoi/pkglist.txt | awk '{print $1}')
+  fi
 
+    # go setup
+  sudo rm -rf /usr/local/go
+  sudo mkdir -p /usr/local/go && curl -Ls https://storage.googleapis.com/golang/go1.14.1.linux-amd64.tar.gz | sudo tar xvzf - -C 
 fi
+
+git config --global core.excludesfile ~/.gitignore
+
+curl https://sh.rustup.rs -sSf | sh
 
 nvim --headless +PlugInstall +UpdateRemotePlugins +qall
 

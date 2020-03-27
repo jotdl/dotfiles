@@ -1,0 +1,9 @@
+curl
+unzip
+tar
+htop
+build-essential
+git
+cmake
+direnv
+bash-completion
