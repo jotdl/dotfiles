@@ -1,0 +1,6 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Johannes Tandler
+	email = johannes@jtdl.de
+[core]
+	excludesfile = /Users/jota/.gitignore
