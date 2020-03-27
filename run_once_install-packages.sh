@@ -54,6 +54,11 @@ git config --global core.excludesfile ~/.gitignore
 
 curl https://sh.rustup.rs -sSf | sh
 
+if [[ $system_type == "Linux" ]]; then 
+  source $HOME/.cargo/env
+  cargo install --force starship  
+fi
+
 nvim --headless +PlugInstall +UpdateRemotePlugins +qall
 
 source $HOME/.cargo/env
