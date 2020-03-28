@@ -9,5 +9,4 @@ direnv
 bash-completion
 ca-certificates
 pkg-config
-libssl-dev
 docker
