@@ -2,6 +2,7 @@
 
 cd "$HOME" || return 
 system_type=$(uname -s)
+
 if [[ $system_type == "Darwin" ]]; then
   echo "Hello Mac User!"
   echo "Installing Homebrew..."
@@ -10,20 +11,18 @@ if [[ $system_type == "Darwin" ]]; then
   # install the git from homebrew
   brew install git
 fi
+
 if [[ $system_type == "Linux" ]]; then 
   echo "Hello Linux User!"
 
 	if hash apt-get 2>/dev/null; then
     sudo apt update
-    # make sure git is installed, not all installations have it by default
     sudo apt install -y git curl
   else
     sudo pacman -Syu git curl
   fi
-  
 fi
 
-# install chezmoi
 curl -sfL https://git.io/chezmoi | sh
 
 export PATH=$HOME/bin:$PATH

@@ -39,12 +39,17 @@ if [[ $system_type == "Darwin" ]]; then
 fi
 
 if [[ $system_type == "Linux" ]]; then 
-	if hash apt-get 2>/dev/null; then
+	
+  if hash apt-get 2>/dev/null; then
+  
     sudo apt-get install -y libssl-dev
     sudo apt-get install -y $(cat ~/.local/share/chezmoi/pkglist.txt | awk '{print $1}')
+  
   else
+  
     sudo pacman -Sy openssl
     sudo pacman -Sy $(cat ~/.local/share/chezmoi/pkglist.txt | awk '{print $1}')
+  
   fi
 
     # go setup
