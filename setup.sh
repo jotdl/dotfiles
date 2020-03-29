@@ -26,4 +26,4 @@ fi
 curl -sfL https://git.io/chezmoi | sh
 
 export PATH=$HOME/bin:$PATH
-chezmoi init --apply --verbose git@github.com:jotdl/dotfiles.git
+chezmoi init --apply --verbose https://github.com/jotdl/dotfiles
