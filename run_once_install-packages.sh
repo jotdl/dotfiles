@@ -17,12 +17,19 @@ if [[ $system_type == "Darwin" ]]; then
   pip3 install --upgrade pip
 
   brew install yarn
-  brew install golang
+  brew install go
+  brew install kubectl
   brew install direnv
   brew install hugo
   brew install z
 
   brew cask install docker
+  ln -s /Applications/Docker.app/Contents/Resources/etc/docker.bash-completion /usr/local/etc/bash_completion.d/docker
+  ln -s /Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-completion /usr/local/etc/bash_completion.d/docker-machine
+  ln -s /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion /usr/local/etc/bash_completion.d/docker-compose
+
+  kubectl completion bash > ~/.kube/kubectl_autocompletion
+
   brew cask install iterm2
   
   brew install bash-completion@2

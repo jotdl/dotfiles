@@ -135,6 +135,8 @@ fi
 
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
+[ -f ~/.kube/kubectl_autocompletion ] && source ~/.kube/kubectl_autocompletion
+
 # eval "$(direnv hook bash)"
 eval "$(starship init bash)"
 
