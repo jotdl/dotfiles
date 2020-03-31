@@ -35,7 +35,7 @@ if [[ $system_type == "Darwin" ]]; then
   brew install bash-completion@2
   brew install starship
 
-  defaults write com.apple.dock workspaces-auto-swoosh -bool NO
+  defaults write com.apple.dock workspaces-auto-swoosh -bool true
   defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
   defaults write com.apple.screencapture location /Users/$USER/Pictures/Screenshots
   defaults write com.apple.dock autohide-time-modifier -float 0.3
