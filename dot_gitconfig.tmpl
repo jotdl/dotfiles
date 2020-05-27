@@ -4,3 +4,6 @@
 	email = {{ .email }}
 [core]
 	excludesfile = {{ .chezmoi.homedir }}/.gitignore
+
+[include]
+    path = .{{.chezmoi.hostname}}.gitconfig
